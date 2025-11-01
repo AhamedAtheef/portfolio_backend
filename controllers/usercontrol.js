@@ -86,3 +86,25 @@ export async function adminvalidation(req, res) {
     }
 }
 
+
+
+// New Controller Function to get user by ID
+export async function getUserById(req, res) {
+    const userId = req.params.id; // Get the ID from the URL parameter
+
+    try {
+        const user = await USER.findById(userId).select('-password'); // Find user and exclude password
+        
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        // Return the user object (this is what your frontend needs for selectedUser)
+        res.status(200).json(user); 
+    } catch (error) {
+        console.error("Error fetching user by ID:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+}
+
+
