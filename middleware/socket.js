@@ -15,11 +15,14 @@ const userSocketMap = {}; // { userId: socketId }
 const io = new Server(server, {
     cors: {
         origin: [
-            process.env.FRONTEND_URL || "http://localhost:5173", 
+            "https://ahamedatheef.netlify.app",
+            "https://ahamedatheef.netlify.app/",
+            "http://localhost:8080"
         ],
         credentials: true,
     },
 });
+
 
 //  Helper to get receiver socket id by userId
 export function getReceiver(userId) {
